@@ -1,0 +1,60 @@
+﻿@model IEnumerable<itemtracker.Models.Expense>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-danger">Staff Menu List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Expense" asp-action="Create" class="btn btn-primary">Order Menu</a>
+        </div>
+       
+    </div>
+    <br/>
+
+    @if (Model.Count() > 0)
+    {
+
+
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th align="center">Full Name</th>
+                    <th align="center">Bussiness Unit</th>
+                    <th align="center">Menu</th>
+                    <th align="center">Allergy</th>
+                    <th algn="center">Date</th>
+                    <th algn="center">Action</th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+                @foreach (var expense in Model)
+                {
+                <tr>
+                    <td width="20%">@expense.FullName</td>
+                    <td width="15%">@expense.BussinessUnit</td>
+                    <td width="20%">@expense.Menu</td>
+                    <td width="15%">@expense.Allergy</td>
+                    <td width="20%">@expense.Date</td>
+                    <td width="10%">
+                        @*<div class="w-10 btn-group" role="group"></div>*@
+                        <div class="col-12 text-center">
+                            <a asp-controller="Expense" asp-action="Update" asp-route-Id="@expense.Id" class="btn btn-outline-primary btn-sm">Update</a>
+                            <br />
+                            <a asp-controller="Expense" asp-action="Delete" asp-route-Id="@expense.Id" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    else
+    {
+        <p> No Item created yet </p>
+    }
+
+
+</div>
